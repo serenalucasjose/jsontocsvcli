@@ -6,39 +6,44 @@ const axios = require("axios");
 const fs = require('fs');
 
 const options = yargs
-	.usage("Usage: -u <url>")
+	.usage("Help: -h <url>")
 	.option("u", {
 		alias: "url",
 		describe: "URL Endpoint",
-		type: "string"
+		type: "string",
+		demandOption: true
 	})
 	.option("k", {
 		alias: "key",
 		describe: "The key used to extract data from JSON response",
-		type: "string"
+		type: "string",
+		demandOption: true
 	})
 	.option("o", {
 		alias: "output",
 		describe: "Output path to drop the CSV file (defaults to current directory - Im not being lazy)",
-		type: "string"
+		type: "string",
+		demandOption: true
 	})
 	.option("f", {
 		alias: "filename",
 		describe: "CSV file name (No .ext. Defaults to csvFromJson.csv)",
-		type: "string"
+		type: "string",
+		demandOption: true
 	})
 	.argv;
 
 const url = options.u;
 const fileName = (options.f) ? `${options.f}.csv` : 'csvFromJson.csv';
 const output = (options.o) ? options.o : './';
+
 axios.get(url, {headers: {Accept: "application/json"}})
 .then(res => {
 	if (options.k) {
 		const { k: key } = options;
-
+		const jsonData = (key) ? res[key] : res;
 		try {
-			parseResponse(res[key], {fileName, output});
+			parseResponse(jsonData,{fileName, output});
 		} catch (e) {
 			console.error(e);
 		}
