@@ -1,0 +1,23 @@
+{
+  "name": "jsonToCsv",
+  "version": "1.0.0",
+  "description": "https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejssl\r https://attacomsian.com/blog/nodejs-convert-json-to-csv#\r https://attacomsian.com/blog/nodejs-convert-json-to-csv#",
+  "main": "index.js",
+  "bin": {
+    "jsonToCsv": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Lucas Jose Serena",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "boxen": "^4.0.0",
+    "chalk": "^2.4.2",
+    "g": "^2.0.1",
+    "json-2-csv": "^3.7.0",
+    "yargs": "^13.2.4"
+  }
+}
